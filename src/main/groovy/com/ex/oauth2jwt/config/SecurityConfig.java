@@ -1,5 +1,6 @@
 package com.ex.oauth2jwt.config;
 
+import com.ex.oauth2jwt.jwt.JWTFilter;
 import com.ex.oauth2jwt.jwt.JWTUtil;
 import com.ex.oauth2jwt.oauth2.CustomSuccessHandler;
 import com.ex.oauth2jwt.service.CustomOAuth2UserService;
@@ -11,6 +12,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
@@ -29,6 +31,10 @@ public class SecurityConfig {
                 .csrf((auth) -> auth.disable())
                 .formLogin((auth) -> auth.disable())
                 .httpBasic((auth) -> auth.disable());
+
+        //JWTFilter 추가
+        http
+                .addFilterBefore(new JWTFilter(jwtUtil), UsernamePasswordAuthenticationFilter.class);
 
         //oauth2
         http

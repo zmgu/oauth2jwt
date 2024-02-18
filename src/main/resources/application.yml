@@ -2,23 +2,23 @@ server:
   port: 8888
 
 spring:
-  # 집 로컬 DB
-#  datasource:
-#    url: jdbc:mysql://127.0.0.1:3306/local?useSSL=false&useUnicode=true&serverTimezone=Asia/Seoul
-#    username: local
-#    password: 1234
+  #집 로컬 DB
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/local?useSSL=false&useUnicode=true&serverTimezone=Asia/Seoul
+    username: local
+    password: 1234
 
-    # 회사 로컬 DB
-  driver-class-name: org.mariadb.jdbc.Driver
-  url: jdbc:mariadb://localhost:3306/zm
-  username: zmgu
-  password: 1234
+#    # 회사 로컬 DB
+#  driver-class-name: org.mariadb.jdbc.Driver
+#  url: jdbc:mariadb://localhost:3306/zm
+#  username: zmgu
+#  password: 1234
 
-#  jpa:
-#    hibernate:
-#      ddl-auto: create
-#      naming:
-#        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+  jpa:
+    hibernate:
+      ddl-auto: create
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
 
   jwt:
     secret: vmfhaltmskdlstkfkdgodyroqkfwkdbalroqkfwkdbalaaaaaaaaaaaaaaaabbbbb

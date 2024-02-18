@@ -38,6 +38,19 @@ public class JWTFilter extends OncePerRequestFilter {
             }
         }
 
+        String requestUri = request.getRequestURI();
+
+        if (requestUri.matches("^\\/login(?:\\/.*)?$")) {
+
+            filterChain.doFilter(request, response);
+            return;
+        }
+        if (requestUri.matches("^\\/oauth2(?:\\/.*)?$")) {
+
+            filterChain.doFilter(request, response);
+            return;
+        }
+
         //Authorization 헤더 검증
         if (authorization == null) {
 
@@ -52,7 +65,7 @@ public class JWTFilter extends OncePerRequestFilter {
         String token = authorization;
 
         //토큰 소멸 시간 검증
-        if (jwtUtil.isExpired(token)) {
+        if (jwtUtil.isExpired(token) == true) {
 
             System.out.println("token expired");
             filterChain.doFilter(request, response);
